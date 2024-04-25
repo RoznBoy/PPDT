@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#%% CV, categorical data, 데이터명이나 경로는 islab server내 도커 컨테이너에 맞춰져 있음
+#%% CV, continuous data, 데이터명이나 경로는 islab server내 도커 컨테이너에 맞춰져 있음
 import pandas as pd
 import os
 import numpy as np
@@ -18,8 +18,8 @@ cv = 3
 #dset = ['cancer', 'digit', 'iris', 'wine']
 
 #dset = ['Adult', 'BreastCancer', 'Connect-4', 'Soybean']
-dset = ['Adult', 'BreastCancer', 'Connect-4', 'Soybean']+['cancer']*4 + ['cover-small']*4 + ['digit']*4 + ['iris']*4 + ['wine']*4
-dset1 = ['None']*4 + ['doane','fd','scott','sturges']*5
+dset = ['cancer', 'cover-small', 'digit', 'iris', 'wine']+['cancer']*4 + ['cover-small']*4 + ['digit']*4 + ['iris']*4 + ['wine']*4
+dset1 = ['None']*5 + ['doane','fd','scott','sturges']*5
 
 tree_model = 'Binary'
 depth_set = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -31,7 +31,7 @@ enc = LabelEncoder()
 
 
 result = pd.DataFrame(
-    columns=['data', 'binning','n_est', 'criterion', 'max_feat','depth', 'fold', 'total_time', 'avg_time', 'std_time'])
+    columns=['data', 'binning','n_est', 'criterion', 'max_feat', 'depth', 'fold', 'total_time', 'avg_time', 'std_time'])
 for dname, dname1 in zip(dset, dset1):
     if dname1 == 'None':
         data = pd.read_csv('%s.csv' % (dname))
@@ -41,12 +41,6 @@ for dname, dname1 in zip(dset, dset1):
 
     X = data.drop('label', axis=1)
     y = data['label']
-    cat_vars = np.setdiff1d(X.columns, X._get_numeric_data().columns)
-    for c in cat_vars:
-        X[c] = enc.fit_transform(X[c])
-
-    # one-hot-encoding 적용
-    X = pd.get_dummies(X, columns=X.columns, drop_first=False)
 
     for max_depth, criterion, num_estimators in product(depth_set, ['mgini',], n_ests):
 
@@ -79,5 +73,5 @@ for dname, dname1 in zip(dset, dset1):
             result.loc[len(result)] = [dname, dname1, num_estimators, criterion, 'None',
                                        max_depth, i, total_time, avg_time, std_time]
     print('%s complete'% (dname))
-result.to_csv('result_summary_cat_%s_week3.csv' % (tree_model), index=False)
+result.to_csv('result_summary_conti_%s_week3.csv' % (tree_model), index=False)
 
