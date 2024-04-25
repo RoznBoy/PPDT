@@ -8,4 +8,4 @@ The innovative Homomorphic Binary Decision Tree (HBDT) method utilizes a modifie
 
 # Code
 The code utilizing HEaaN for GPU acceleration cannot be disclosed.   
-Therefore, I will upload a part of the code utilizing pi-heaan and heaan-it, which can be shared.
+Therefore, I will upload a part of the code utilizing pi-heaan, which can be shared.
