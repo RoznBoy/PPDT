@@ -79,8 +79,7 @@ def n_slot_func(gini):
 
 def left_rotate_reduce(data,interval,gs):
     # data = Block
-   
-    # m0 = heaan.Message(logN-1,0)
+
     m0 = heaan.Block(context,encrypted = False, data = [0]*num_slot)
     res = m0.encrypt()
     
