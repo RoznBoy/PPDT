@@ -980,8 +980,6 @@ def findMaxPosMany(c,d,n,ndata,nslot,nset):
     check_boot(c_red)
 
     ### Need to generate a rotate sequence to choose 1 in a random position
-    # c_out = heaan.Ciphertext(context)
-    # heaan.math.approx.discrete_equal_zero(he, c_red, c_out)
     c_out = selectRandomOnePosMany(c_red,d,n,ndata,nslot,nset)
     # print("selRandOne cmin:",c_out.level)
     # print("findMaxPos result :")
@@ -1191,11 +1189,6 @@ def DT_Learn_big(L,cmin,cy,d,n,t,ndata,model_path,ctxt_path):
     L.cy = Lcy
     print(L.id, 'cy time: %.5f sec' %(time.time()-start))
 
-    # L.cy.to_device()
-    # # print('DT_Learn 2', flush = True)
-    # cacc = heaan.Ciphertext(context)
-    # enc.encrypt(m0,kpack,cacc)
-    # cacc.to_device()
 
     # start = time.time()
     # eval.left_rotate_reduce(cy,1,t,cacc)
@@ -1649,12 +1642,6 @@ def DT_Learn_leaf_big(L,cy,d,n,t,ndata,model_path,ctxt_path):
         Lcy = tmp + Lcy
     L.cy = Lcy
     print(L.id, 'cy time: %.5f sec' %(time.time()-start))
-
-    # L.cy.to_device()
-    # # print('DT_Learn 2', flush = True)
-    # cacc = heaan.Ciphertext(context)
-    # enc.encrypt(m0,kpack,cacc)
-    # cacc.to_device()
 
     # start = time.time()
     # eval.left_rotate_reduce(cy,1,t,cacc)
