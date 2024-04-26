@@ -121,7 +121,6 @@ def left_rotate_reduce(data,interval,gs):
 def right_rotate_reduce(data,interval,gs):
     # data = Block
    
-    # m0 = heaan.Message(logN-1,0)
     m0 = heaan.Block(context,encrypted = False, data = [0]*num_slot)
     res = m0.encrypt()
     
@@ -1812,9 +1811,6 @@ def random_feature(d,logN):
     # print(m1_, m2_)
     m1 = m1_
     m2 = m2_
-    # m1 = heaan.Message(logN-1)
-    # m1.set_data(m1_)
-    # m2 = heaan.Message(logN-1)
-    # m2.set_data(m2_)
+
     # 메세지 형태로 리턴, 한 번 곱하고(m1) 한 번 더하고(m2) 안 쓸거임
     return m1, m2
